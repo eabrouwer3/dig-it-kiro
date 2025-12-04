@@ -358,7 +358,6 @@ function triggerFygarFire(enemy, currentTime) {
                               game.dirt[enemy.y][enemy.x];
 
     if (isCurrentlyInDirt) {
-        console.log(`Fygar ${enemy.id} cannot fire - in dirt at (${enemy.x}, ${enemy.y})`);
         return;
     }
 
@@ -389,20 +388,20 @@ function triggerFygarFire(enemy, currentTime) {
         return;
     }
 
-    // All conditions met - create fire projectile with warning phase
+    // All conditions met - create fire projectile with warning phase and mark enemy as firing
     const fire = {
         id: Date.now() + Math.random(), // Unique ID
         x: enemy.x,
         y: enemy.y,
         direction: enemy.direction,
         createdTime: currentTime,
-        duration: FIRE_BREATH.TOTAL_DURATION
+        duration: FIRE_BREATH.TOTAL_DURATION,
+        enemyId: enemy.id // Link fire to enemy
     };
 
     game.fires.push(fire);
     enemy.lastFireTime = currentTime;
-
-    console.log(`Fygar ${enemy.id} preparing fire at (${fire.x}, ${fire.y}) facing ${fire.direction} - NOT in dirt`);
+    enemy.isFiring = true; // Immediately set firing state
 }
 
 /**
@@ -424,10 +423,8 @@ function updateEnemies(deltaTime) {
 
         // Update Fygar firing state
         if (enemy.type === ENEMY_TYPES.FYGAR) {
-            // Check if this Fygar has an active fire
-            const activeFire = game.fires.find(fire =>
-                fire.x === enemy.x && fire.y === enemy.y
-            );
+            // Check if this Fygar has an active fire linked to it
+            const activeFire = game.fires.find(fire => fire.enemyId === enemy.id);
 
             if (activeFire) {
                 const fireAge = currentTime - activeFire.createdTime;
@@ -436,8 +433,8 @@ function updateEnemies(deltaTime) {
                 enemy.isFiring = false;
             }
 
-            // Try to trigger fire breath (only if not in dirt)
-            if (!enemy.isFiring) {
+            // Try to trigger fire breath (only if not already firing and not in dirt)
+            if (!enemy.isFiring && !enemy.isInDirt) {
                 triggerFygarFire(enemy, currentTime);
             }
         }
