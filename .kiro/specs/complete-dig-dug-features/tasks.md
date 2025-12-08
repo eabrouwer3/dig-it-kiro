@@ -93,57 +93,57 @@
     - Use orange/red colors with animated effect
     - _Requirements: 2.5_
 
-- [ ] 6. Implement pump attack mechanic
-  - [ ] 6.1 Add pump state to game object
+- [x] 6. Implement pump attack mechanic
+  - [x] 6.1 Add pump state to game object
     - Create pump object structure (active, targetEnemy, inflationProgress, keyHeld)
     - Initialize pump as null
     - _Requirements: 3.1_
 
-  - [ ] 6.2 Create keyboard handler for spacebar
+  - [x] 6.2 Create keyboard handler for spacebar
     - Detect spacebar press to fire pump
     - Detect spacebar hold for continued inflation
     - Detect spacebar release for deflation
     - _Requirements: 3.1, 3.5_
 
-  - [ ] 6.3 Implement firePump() function
+  - [x] 6.3 Implement firePump() function
     - Create pump projectile 1 block in player's facing direction
     - Check for enemy at projectile position
     - Attach pump to enemy if collision detected
     - _Requirements: 3.1, 3.2_
 
-  - [ ] 6.4 Create updatePump() function for inflation/deflation
+  - [x] 6.4 Create updatePump() function for inflation/deflation
     - Increase inflation stage every 0.5 seconds while spacebar held
     - Decrease inflation stage every 0.3 seconds when released
     - Remove enemy and award points at stage 4
     - Reset pump when enemy defeated or fully deflated
     - _Requirements: 3.3, 3.4, 3.5_
 
-  - [ ] 6.5 Add pump and inflation rendering
+  - [x] 6.5 Add pump and inflation rendering
     - Draw pump line from player to attached enemy
     - Scale enemy sprite based on inflation stage (1 + stage * 0.25)
     - Add visual feedback for pump attachment
     - _Requirements: 3.6_
 
-- [ ] 7. Implement rock and gravity system
-  - [ ] 7.1 Add rocks array to game state
+- [x] 7. Implement rock and gravity system
+  - [x] 7.1 Add rocks array to game state
     - Create rock object structure (id, x, y, state, wobbleTimer, fallSpeed)
     - Define rock constants (fall speed, wobble duration)
     - _Requirements: 4.1_
 
-  - [ ] 7.2 Create spawnRocks() function
+  - [x] 7.2 Create spawnRocks() function
     - Generate 3-5 rocks at random positions in dirt grid
     - Ensure rocks don't spawn on player or enemy positions
     - Initialize rocks in 'stable' state
     - _Requirements: 4.1_
 
-  - [ ] 7.3 Implement updateRocks() function
+  - [x] 7.3 Implement updateRocks() function
     - Check support beneath each rock using checkRockSupport()
     - Start wobble timer when support removed
     - Transition to falling state after 0.5 seconds
     - Move falling rocks at 8 blocks/second
     - _Requirements: 4.2, 4.5_
 
-  - [ ] 7.4 Create checkRockCollision() function
+  - [x] 7.4 Create checkRockCollision() function
     - Check if falling rock position matches enemy positions
     - Check if falling rock position matches player position
     - Call appropriate damage/defeat functions
@@ -151,43 +151,43 @@
     - Remove rock when it reaches bottom or hits dirt
     - _Requirements: 4.3, 4.4, 4.5_
 
-  - [ ] 7.5 Add rock rendering
+  - [x] 7.5 Add rock rendering
     - Draw rocks as gray squares distinct from dirt
     - Add wobble animation when unsupported
     - Show motion blur or trail effect when falling
     - _Requirements: 4.6_
 
-- [ ] 8. Implement scoring system
-  - [ ] 8.1 Add score tracking to game state
+- [x] 8. Implement scoring system
+  - [x] 8.1 Add score tracking to game state
     - Initialize score to 0
     - Add score display to status bar
     - _Requirements: 5.1, 5.6_
 
-  - [ ] 8.2 Create addScore() function
+  - [x] 8.2 Create addScore() function
     - Add points to game.score
     - Create optional score popup particle effect at event location
     - _Requirements: 5.1_
 
-  - [ ] 8.3 Integrate scoring with game events
+  - [x] 8.3 Integrate scoring with game events
     - Award 200 points for pump defeats in updatePump()
     - Award 500 points per enemy for rock crushes in checkRockCollision()
     - Multiply rock bonus for multiple crushes
     - Award 1000 points for level completion
     - _Requirements: 5.2, 5.3, 5.4, 5.5_
 
-- [ ] 9. Implement level progression system
-  - [ ] 9.1 Add level tracking to game state
+- [x] 9. Implement level progression system
+  - [x] 9.1 Add level tracking to game state
     - Initialize level to 1
     - Add level display to status bar
     - _Requirements: 7.5_
 
-  - [ ] 9.2 Create checkLevelComplete() function
+  - [x] 9.2 Create checkLevelComplete() function
     - Check if enemies array is empty
     - Transition to 'levelComplete' game state
     - Start 2-second transition timer
     - _Requirements: 7.1_
 
-  - [ ] 9.3 Implement advanceLevel() function
+  - [x] 9.3 Implement advanceLevel() function
     - Increment level counter
     - Reset dirt grid to full coverage
     - Clear player starting position
@@ -197,42 +197,42 @@
     - Award level completion bonus
     - _Requirements: 7.2, 7.3, 7.4, 5.5_
 
-  - [ ] 9.4 Add level transition rendering
+  - [x] 9.4 Add level transition rendering
     - Display "Level X Complete" message during transition
     - Show brief animation or effect
     - _Requirements: 7.1_
 
-- [ ] 10. Implement enemy aggression scaling
-  - [ ] 10.1 Add aliveTime tracking to enemies
+- [x] 10. Implement enemy aggression scaling
+  - [x] 10.1 Add aliveTime tracking to enemies
     - Initialize aliveTime to 0 for each enemy
     - Increment aliveTime in updateEnemies()
     - _Requirements: 8.2_
 
-  - [ ] 10.2 Apply speed boost after 30 seconds
+  - [x] 10.2 Apply speed boost after 30 seconds
     - Check if enemy.aliveTime > 30
     - Multiply enemy speed by 1.2
     - Apply visual indicator (optional)
     - _Requirements: 8.2_
 
 - [ ] 11. Add polish and visual effects
-  - [ ] 11.1 Create particle system
+  - [x] 11.1 Create particle system
     - Add particles array to game state
     - Create particle object structure (x, y, vx, vy, color, lifetime)
     - Implement updateParticles() and renderParticles() functions
     - _Requirements: Design - Visual Effects_
 
-  - [ ] 11.2 Add particle effects for game events
+  - [x] 11.2 Add particle effects for game events
     - Spawn particles when enemy pops from inflation
     - Spawn particles when rock crushes enemy
     - Spawn particles when digging through dirt
     - _Requirements: Design - Visual Effects_
 
-  - [ ] 11.3 Implement screen shake effect
+  - [x] 11.3 Implement screen shake effect
     - Add screen shake on rock impact
     - Add brief camera offset to rendering
     - _Requirements: Design - Visual Effects_
 
-  - [ ] 11.4 Add damage flash effect
+  - [x] 11.4 Add damage flash effect
     - Flash screen red when player takes damage
     - Brief overlay effect on loseLife()
     - _Requirements: Design - Visual Effects_
